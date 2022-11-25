@@ -1,0 +1,63 @@
+<div class="admin-product">
+    <div>
+        <a class="btn btn-primary btn-lg" id="addProduct" routerLink="/admin/product/form" routerLinkActive="active"
+            ariaCurrentWhenActive="page">
+            Add a product</a>
+    </div>
+    <form>
+
+        <div class="mb-3 row" id="searchBox">
+            <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label ">Search</label>
+            <div class="col-xs-3 col-sm-auto">
+                <input
+                    (keyup)="filter()"
+                    id="table-complete-search"
+                    type="text"
+                    class="form-control"
+                    name="searchTerm"
+                    [(ngModel)]="datatableService.searchTerm"
+                />
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">S.No.</th>
+                    <th scope="col" sortable="productName" (sort)="onSort($event)">Product Name</th>
+                    <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
+                    <th scope="col" sortable="category" (sort)="onSort($event)">Category</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+
+                <tr *ngFor="let list of productListPaginate; index as i">
+                    <td>{{ i+1 }}</td>
+                    <td> {{ list.productName }} </td>
+                    <td>{{ list.price | currency }}</td>
+                    <td>{{ list.category }}</td>
+                    <td class="button-action">
+                        <button class="btn btn-primary" id="edit"
+                            [routerLink]="['/admin/product/', list.id]">Edit</button>
+                        <button class="btn btn-danger" id="delete" (click)="delete(list.id)">delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="productListFiltered.length" [(page)]="datatableService.page"
+                [pageSize]="datatableService.pageSize" (pageChange)="refreshCountries()">
+            </ngb-pagination>
+
+            <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="datatableService.pageSize"
+                (ngModelChange)="refreshCountries()">
+                <option [ngValue]="2">2 items per page</option>
+                <option [ngValue]="4">4 items per page</option>
+                <option [ngValue]="6">6 items per page</option>
+            </select>
+        </div>
+
+    </form>
+
+</div>

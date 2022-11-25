@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+   <a  routerLink="/home" routerLinkActive="active"><img src="../assets/logo.webp" class="navbar-brand"></a>
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <ng-template #showLogin>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/login" routerLinkActive="active"
+              ariaCurrentWhenActive="page">Login</a>
+          </li>
+        </ng-template>
+        <li *ngIf="auth.user$ | async as user; else showLogin" ngbDropdown class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" type="button" id="dropdownBasic1" ngbDropdownToggle>
+            {{user.name || "Username"}}
+          </a>
+          <ul ngbDropdownMenu class="dropdown-menu">
+            <li><a gbDropdownItem class="dropdown-item" routerLink="admin/product">Manage Product</a></li>
+            <li><a gbDropdownItem class="dropdown-item" routerLink="/login" (click)="logout()">logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

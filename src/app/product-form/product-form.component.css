@@ -1,0 +1,29 @@
+form{
+    margin:20px;
+}
+
+.mb-3{
+    width: 30rem;
+}
+
+
+input, select{
+    padding: 10px;
+}
+
+.card-img-top{
+    max-height: 15vw;
+    object-fit:contain;
+}
+
+.card{
+    padding: 20px;
+}
+
+.btn{
+    margin-top: .3rem;
+}
+
+#back-button{
+    margin-left: 20px;
+}
