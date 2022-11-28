@@ -31,11 +31,11 @@
             <tbody>
             
 
-                <tr *ngFor="let list of productListPaginate; index as i">
-                    <td>{{ i+1 }}</td>
-                    <td> {{ list.productName }} </td>
-                    <td>{{ list.price | currency }}</td>
-                    <td>{{ list.category }}</td>
+                <tr *ngFor="let list of productListPaginate;index as i">
+                    <td>{{ (datatableService.page - 1) * datatableService.pageSize + i + 1 }}</td>
+                    <td><ngb-highlight [result]="list.productName" [term]="datatableService.searchTerm"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="list.price" [term]="datatableService.searchTerm"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="list.category" [term]="datatableService.searchTerm"></ngb-highlight></td>
                     <td class="button-action">
                         <button class="btn btn-primary" id="edit"
                             [routerLink]="['/admin/product/', list.id]">Edit</button>

@@ -58,16 +58,11 @@ th[sortable].desc:before {
 
 #searchBox{
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 	margin-top: -70px;
 }
 
 .loadingLabel{
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 }
-
-/* .col-form-label{
-	margin-left: auto;
-
-} */

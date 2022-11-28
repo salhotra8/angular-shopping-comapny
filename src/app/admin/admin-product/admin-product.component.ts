@@ -3,7 +3,7 @@ import { DataTableService } from './../../services/data-table.service';
 import { Product } from './../../model/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { TitleStrategy } from '@angular/router';
+
 
 @Component({
   selector: 'app-admin-product',
@@ -27,7 +27,7 @@ export class AdminProductComponent implements OnInit {
 
 
   ngOnInit() {
-
+    
     this.productService.getAllProducts().subscribe(data => {
       this.productList = data;
         this.productListFiltered = data;
