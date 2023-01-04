@@ -1,3 +1,8 @@
+import { ToastsContainer } from './toasts-container.component';
+import { UserService } from './services/user.service';
+import { ProductService } from './services/product.service';
+import { DataTableService } from './services/data-table.service';
+import { CategoryService } from './services/category.service';
 import { DecimalPipe } from '@angular/common';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -17,9 +22,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { NgbdSortableDirective } from './sortable.directive';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
 
 @NgModule({
@@ -32,7 +40,9 @@ import { NgbdSortableDirective } from './sortable.directive';
     HomeComponent,
     SignupComponent,
     ProductTableComponent,
-    NgbdSortableDirective
+    NgbdSortableDirective,
+    ShoppingCartComponent,
+    ShippingFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +52,17 @@ import { NgbdSortableDirective } from './sortable.directive';
     AngularFirestoreModule,
     NgbModule,
     AngularFireAuthModule,
+    ToastsContainer,
   ],
-  providers: [AuthenticationService,
-  AuthGuard, DecimalPipe],
+  providers: [
+    AuthenticationService,
+    AuthGuard,
+    DecimalPipe,
+    CategoryService,
+    DataTableService,
+    ProductService,
+    UserService,
+    ShoppingCartService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

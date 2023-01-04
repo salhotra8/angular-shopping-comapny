@@ -85,7 +85,7 @@ export class DataTableService {
   }
 
 
-  sort(products: Product[], column = this._state.sortColumn, direction: string = this._state.sortDirection): Product[] {
+  sort(products: any[], column = this._state.sortColumn, direction: string = this._state.sortDirection): any[] {
 
     const compare = (v1: string | any, v2: string | any) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
     if (direction === '' || column === '') {

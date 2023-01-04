@@ -1,0 +1,105 @@
+
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+    }
+    
+    .card-registration .select-arrow {
+    top: 13px;
+    }
+    
+    .bg-grey {
+    background-color: #eae8e8;
+    }
+    
+    @media (min-width: 992px) {
+    .card-registration-2 .bg-grey {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    }
+    }
+    
+    @media (max-width: 991px) {
+    .card-registration-2 .bg-grey {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    }
+    }
+
+    #product-quantity{
+        font-weight: 600;
+        height: 3rem;
+        width: 3rem;
+        border-radius: 30px;
+        text-align: center;
+        margin:0px .3rem;
+        font-size: medium;
+        padding: 0;
+        
+        
+    }
+
+    #update-quantity{
+        padding: 0px .7rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        font-weight: 500;
+        font-size:2.6ch;
+        border-radius: 5rem;
+        
+    }
+
+    .cart-container{
+    max-height: 50vh ;
+     overflow-y: scroll; 
+     overflow-x:hidden;  
+    }
+
+    #cartlogo-container{
+        opacity: 1;
+        z-index: 10;
+        /* position:absolute */
+    }
+
+    .return-container{
+        
+        margin-top: 3rem;
+       
+    }
+
+    .btn-back{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        font-weight: 500;
+    }
+
+  
+   
+      
+      .cart-container::-webkit-scrollbar-track {
+        margin-top: 20px;
+      }
+      
+      .cart-container::-webkit-scrollbar {
+
+        width: 6px;
+      }
+      
+      .cart-container::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #737272;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 2px;
+      }
+    
+      #delete-product{
+        padding: 5px 10px;
+        border-radius: 20px;
+      }
+
+      .bi-x-lg:hover{
+        color: rgb(171, 37, 37);
+      }
+
+      #product-price{
+        padding-left: 25px;
+      }

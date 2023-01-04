@@ -10,57 +10,43 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductService {
 
-  private itemsCollection: AngularFirestoreCollection<Product>;
-  private productsCollection: AngularFirestoreCollection<Product>;
+   productsCollection: AngularFirestoreCollection<Product>;
   private productDocument!: AngularFirestoreDocument<Product>;
-  private productList!:Observable<Product[]>
-  public productListArray: Product[]=[];
+  private productList!: Observable<Product[]>
+  public productListArray: Product[] = [];
 
   constructor(private afs: AngularFirestore,
     private router: Router,
     private modalService: NgbModal) {
 
-    this.itemsCollection = afs.collection<Product>('products');
-    this.productsCollection = afs.collection('products');
-    // console.log(this.product);
-    // console.log(this.product.length);
+    this.productsCollection = afs.collection<Product>('products');
 
   }
 
   addProduct(product: Product, content: any) {
-    console.log(product);
-    this.itemsCollection.add(product).then(() => {
+    this.productsCollection.add(product).then(() => {
       this.openModal(content);
       this.router.navigate(['admin/product']);
     });
 
   }
-  updateProduct(id: string, product: Product, content:any) {
+  updateProduct(id: string, product: Product, content: any) {
 
     this.productDocument = this.afs.doc(`products/${id}`);
     this.productDocument.update(product).then(() => {
-    this.openModal(content);
-    this.router.navigate(['admin/product']);
-  });
+      this.openModal(content);
+      this.router.navigate(['admin/product']);
+    });
   }
 
   getAllProducts() {
-    this.productList = this.productsCollection.snapshotChanges()
+    return this.productList = this.productsCollection.snapshotChanges()
       .pipe(map(actions => actions.map(a => {
         const id = a.payload.doc.id;
         const data = a.payload.doc.data();
-        
-        // this.productListArray.push(data);
-        // console.log(this.productListArray);
-        
-       
+
         return { id, ...data };
       })))
-      // this.productList.subscribe(data => {this.productListArray = data;
-      //   console.log(this.productListArray)})
-      // console.log(this.productListArray);
-      return this.productList;
-      
 
   }
 
@@ -75,7 +61,7 @@ export class ProductService {
   }
 
 
-  openModal(content:any){
+  openModal(content: any) {
     this.modalService.open(content)
   }
 

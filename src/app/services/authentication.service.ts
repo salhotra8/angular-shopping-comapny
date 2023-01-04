@@ -13,6 +13,7 @@ import firebase from 'firebase/compat/app';
 export class AuthenticationService {
   user$: Observable<User | any>;
   redirectUrl: string | null = null;
+  user:any;
 
   constructor(private auth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -21,6 +22,7 @@ export class AuthenticationService {
     this.user$ = this.auth.authState.pipe(switchMap
       ((user: any) => {
         if (user) {
+          this.user=user;
           return this.afs.doc<User>(`/users/${user.uid}`).valueChanges();        
 
         }

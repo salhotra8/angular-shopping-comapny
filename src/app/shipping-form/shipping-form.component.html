@@ -1,0 +1,164 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-8">
+            <h3 class="my-3 ">Billing address</h3>
+            <form class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" for="firstName">First name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="firstName" ngModel #firstName="ngModel"
+                                name="firstName" required>
+                        </div>
+                        <ngb-alert *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" type="danger"
+                            [dismissible]="false">First Name is required</ngb-alert>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" for="lastName">Last name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="lastName" ngModel #lastName="ngModel"
+                                name="lastName" required>
+                        </div>
+                        <ngb-alert *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" type="danger"
+                            [dismissible]="false">Last Name is required</ngb-alert>
+                    </div>
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com" ngModel
+                            #email="ngModel" name="email" required>
+                    </div>
+                    <ngb-alert *ngIf="email.invalid && (email.dirty || email.touched)" type="danger"
+                        [dismissible]="false">Email is required</ngb-alert>
+                </div>
+
+
+                <div class="mb-4">
+                    <label class="form-label" for="address">Address</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="address" placeholder="Flat No, Lane/Street, Area"
+                            ngModel #address="ngModel" name="address" required>
+                    </div>
+                    <ngb-alert *ngIf="address.invalid && (address.dirty || address.touched)" type="danger"
+                        [dismissible]="false">Address is required</ngb-alert>
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-md-5 mb-4">
+                        <label class="form-label" for="state">State</label>
+                        <select class="form-select p-2">
+                            <option style="font-size: larger;" *ngFor="let state of states | keyvalue"
+                                [value]="state.key">{{state.value}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-4 ms-4">
+                        <label class="form-label" for="country">Country</label>
+                        <select class="form-select" aria-label="Default select example" disabled>
+                            <option selected>INDIA</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-5 mb-3">
+                        <label class="form-label">Contact No.</label>
+                        <div class="input-group">
+                            <span class="input-group-text">+91</span>
+                            <input type="text" class="form-control" id="contactNumber" ngModel #contactNumber="ngModel"
+                                name="contactNumber" required>
+                        </div>
+                        <ngb-alert *ngIf="contactNumber.invalid && (contactNumber.dirty || contactNumber.touched)"
+                            type="danger" [dismissible]="false">Contact number is required</ngb-alert>
+                    </div>
+
+                    <div class="col-md-4 mb-4 ms-4">
+                        <label class="form-label">Pincode</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="pincode" ngModel #pincode="ngModel"
+                                name="pincode" required>
+                        </div>
+                        <ngb-alert *ngIf="pincode.invalid && (pincode.dirty || pincode.touched)" type="danger"
+                            [dismissible]="false">Pincode is required</ngb-alert>
+                    </div>
+                </div>
+
+                <!-- </div> -->
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Shipping address is the same as my billing address
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Save this information for next time
+                    </label>
+                </div>
+            </form>
+        </div>
+        
+
+
+        <div class="col-lg-4 mb-4">
+            <h3 class="my-3 ms-2">Payment</h3>
+            <div class="card p-4" id="payment-card">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" checked>
+                    <label class="form-check-label">
+                        Credit Card / Debit Cart
+                    </label>
+                    <div class="col-md-11 my-3">
+                        <label class="form-label">Card Number</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="XXX-XXXX-XXXX-XXXX" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label class="form-label">Name on Card</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">CVV</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 mb-3">
+                        <label class="form-label">Expiry Date</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="  MM/YY" required>
+                        </div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox">
+                        <label class="form-check-label">
+                            Save this Card for future payments
+                        </label>
+                    </div>
+                </div>
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault">
+                    <label class="form-check-label">
+                        UPI / Wallet
+                    </label>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg my-2 p-2 ">Place Order</button>
+            </div>
+        </div>
+    </div>
+</div>

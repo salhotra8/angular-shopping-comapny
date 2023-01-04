@@ -1,6 +1,8 @@
 .navbar{
-    margin-bottom: 10px;
     height: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    background-color: rgb(25, 121, 121);
+    border-radius: .3rem;
 }
 
 .navbar-brand{
@@ -9,4 +11,28 @@
     margin-top: -10px;
     margin-bottom: -10px;
     border-radius: 15px;    
+}
+
+.navbar-div{
+    margin-bottom: 100px;
+}
+.cart-logo{
+    margin-right: 25px;
+    box-shadow: rgba(18, 206, 209, 0.408) 0px 8px 24px;
+    border-radius: 100px;
+    padding: 12px 8px;
+    background-color:rgb(26, 165, 165);
+}
+
+.cart-quantity{
+ background-color: yellow;
+ border-radius: 50px;
+ height: 22px;
+ width: 24px;
+ font-weight: 600;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: large;
+ margin-left: -15px;
 }

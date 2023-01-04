@@ -1,0 +1,107 @@
+.card {
+    width: 18.7rem;
+    border-radius: 15px;
+    margin: auto auto 2rem auto;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    display: grid;
+    height: 25rem;
+    padding: 1rem 1rem;
+}
+
+
+img {
+    /* height: 85%; */
+    object-fit:contain;
+    /* border-radius: 1.5rem; */
+
+}
+
+.image-container{
+    min-height: 15rem;
+    max-height: 15rem;
+    display: flex;
+    align-content: flex-start;
+}
+
+.card-btn {
+    background-color: rgb(31, 176, 150);
+
+}
+
+.card-title {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 600;
+
+}
+
+.col-categories {
+    max-width: 25%;
+    margin-top: -60px;
+    margin-left: -40px;
+}
+
+.list-group-item {
+    display: flex;
+    padding: 1rem 1.2rem;
+    font-weight:450;
+}
+
+.sticky-top{
+    top: 100px;
+}
+
+.block{
+    
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+    margin-right: -3.5rem;
+
+}
+
+.form-select{
+
+    width: fit-content;
+}
+
+.container{
+    position: absolute;
+}
+
+#dropdownSorting{
+ font-weight: 600;
+}
+
+.dropdownSortingList{
+    width: 15rem;
+}
+
+.sortByActive{
+    background-color: grey;
+}
+
+.product-quantity{
+    width: 2.1rem;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+    /* margin-right: -50px ;
+    margin-left:-60px ; */
+    
+}
+
+#update-quantity{
+    padding: 4px 0px;
+    font-size: large;
+    font-weight: 500;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 25px;
+    width: 39px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#add-cart{
+    border-radius: 105px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  
+}

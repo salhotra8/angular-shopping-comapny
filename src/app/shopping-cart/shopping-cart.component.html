@@ -1,0 +1,115 @@
+<div class="container py-5 h-85">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-14">
+      <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+        <div class="card-body p-0">
+          <div class="row g-0">
+            <div class="col-lg-8">
+              <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center my-2 sticky-top" id="cartlogo-container">
+                  <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                  <h6 class="mb-0 text-muted">{{this.totalItems}}</h6>
+                </div>
+                <div class="cart-container">
+                  <div *ngFor="let cart of cartItems">
+                    <hr class="my-3">
+
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img [src]="cart.product.imageUrl" class="img-fluid rounded-3" alt="Product Image">
+                      </div>
+                      <div class="col-md-3 col-lg-4 col-xl-3">
+                        <h4 class="text-black mb-0">{{cart.product.productName}}</h4>
+                        <h6 class="text-muted">{{cart.product.category}}</h6>
+
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-3 d-flex align-items-center justify-content-center">
+
+                        <button class="btn" id="update-quantity" (click)="updateProduct(cart.product, -1)"
+                          [disabled]="(loading || cart.quantity === 1)">-</button>
+                        <input id="product-quantity" name="quantity" [value]="cart.quantity" type="text"
+                          class="form-control form-control-lg" readonly>
+                        <button class="btn" id="update-quantity" (click)="updateProduct(cart.product, 1)"
+                          [disabled]="loading">+</button>
+
+
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2 d-flex" id="product-price">
+                        <h6 class="mb-0">{{cart.product.price | currency}}</h6>
+                      </div>
+
+
+                      <div class="col-1" id="delete-product" type="button" (click)="deleteProduct(cart.product)"><svg
+                          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-x-lg" viewBox="0 0 16 16">
+                          <path
+                            d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                        </svg>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="d-flex return-container" routerLink="/home">
+                  <button class="btn btn-back"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                      fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                    </svg> Continue Shopping</button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4 bg-grey">
+              <div class="p-5">
+                <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                <hr class="my-2">
+
+                <div class="d-flex justify-content-between my-3">
+                  <h5 class="text-uppercase">Total items</h5>
+                  <h5>{{this.totalItems}}</h5>
+                </div>
+
+
+
+                <hr class="my-2">
+
+                <div class="d-flex justify-content-between my-3">
+                  <h5 class="text-uppercase">Subtotal</h5>
+                  <h5>{{this.totalPrice | currency}}</h5>
+                </div>
+
+                <hr class="my-2">
+
+                <div class="d-flex justify-content-between my-3">
+                  <h5 class="text-uppercase">Delivery </h5>
+                  <h5>Free*</h5>
+                </div>
+
+                <hr class="my-2">
+
+                <div class="d-flex justify-content-between my-3">
+                  <h5 class="text-uppercase">Total</h5>
+                  <h5>{{this.totalPrice | currency}}</h5>
+                </div>
+
+                <div *ngIf="!user" class="form-check mt-4 mb-2 ms-1">
+                  <input class="form-check-input" type="checkbox"  [(ngModel)]="isGuest">
+                  <label class="form-check-label" style="font-size: larger; font-weight: 500;">
+                    Checkout as Guest
+                  </label>
+                </div>
+
+                <button type="button" class="btn btn-dark btn-lg mt-5 col-12 p-2" (click)="checkout()">Proceed To Checkout</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
