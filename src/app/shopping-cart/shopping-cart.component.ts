@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthenticationService } from './../services/authentication.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -20,19 +21,24 @@ export class ShoppingCartComponent implements OnInit {
   loading!: boolean;
   totalPrice: number = 0;
   isGuest: boolean = false;
-  user=this.auth.user;
+  user: any;
 
 
-  constructor(private cartService: ShoppingCartService, 
-    private auth : AuthenticationService,    
-    private router : Router) {
+  constructor(private cartService: ShoppingCartService,
+    private auth: AuthenticationService,
+    private router: Router,) {
 
     this.cartService.loading.subscribe(val => this.loading = val);
-    console.log(this.user);
+
+    this.auth.UserCheck().pipe(take(1)).subscribe((user: any) => {
+      if (user) {
+        this.user = user;
+      }
+    })
+
   }
 
   ngOnInit(): void {
-
     this.cartService.shoppingCartDocument.snapshotChanges()
       .subscribe((data: any) => {
         if (data.payload.data()) {
@@ -42,7 +48,7 @@ export class ShoppingCartComponent implements OnInit {
           let price = 0;
           for (let cart of this.cartItems) {
             quantity = quantity + cart.quantity;
-            price =  price + (cart.product.price * cart.quantity);
+            price = price + (cart.product.price * cart.quantity);
 
           }
           this.totalItems = quantity;
@@ -51,25 +57,26 @@ export class ShoppingCartComponent implements OnInit {
           // console.log("subscribe call");
           // this.cartItems.forEach(data => this.totalItems = this.totalItems + data.quantity )
         }
+
       });
 
   }
 
-  updateProduct(product: Product, quantity : number ){
- this.cartService.createOrUpdateCart(product, quantity, 'Product Updated Successfully');
+  updateProduct(product: Product, quantity: number) {
+    this.cartService.createOrUpdateCart(product, quantity, 'Product Updated Successfully');
   }
 
-  deleteProduct(product: Product){
+  deleteProduct(product: Product) {
     this.cartService.deleteFromCart(product)
   }
 
-  checkout(){
-    if(this.isGuest == true ) this.router.navigate(['/shippingForm']);
-    else{
-     this.auth.redirectUrl = '/shippingForm'; 
-    this.router.navigate(['/login']);
+  checkout() {
+    if (this.isGuest || this.user) this.router.navigate(['/shippingForm']);
+    else {
+      this.auth.redirectUrl = '/shippingForm';
+      this.router.navigate(['/login']);
     }
   }
- 
+
 
 }

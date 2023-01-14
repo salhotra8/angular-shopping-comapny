@@ -11,25 +11,31 @@ import firebase from 'firebase/compat/app';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  user$: Observable<User | any>;
+  user$!: Observable<User | any>;
   redirectUrl: string | null = null;
-  user:any;
+  user: any;
 
   constructor(private auth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
     private userService: UserService) {
-    this.user$ = this.auth.authState.pipe(switchMap
-      ((user: any) => {
-        if (user) {
-          this.user=user;
-          return this.afs.doc<User>(`/users/${user.uid}`).valueChanges();        
 
-        }
-        else return of(null);
-      }
-      ));
+      this.UserCheck();
+    
   }
+
+    UserCheck(){
+      return this.user$ = this.auth.authState.pipe(switchMap
+        ((user: any) => {
+          if (user) {
+            this.user = user;
+            return this.afs.doc<User>(`/users/${user.uid}`).valueChanges();
+  
+          }
+          else return of(null);
+        }
+        ));
+    }
 
 
   loginWithGoogle() {
@@ -51,7 +57,7 @@ export class AuthenticationService {
     this.auth.createUserWithEmailAndPassword(email, password).
       then((result) => {
         this.userService.updateUser(result.user);
-        this.userService.updateUserName(result.user, {name:name});
+        this.userService.updateUserName(result.user, { name: name });
 
         if (this.redirectUrl) {
           this.router.navigate([this.redirectUrl]);

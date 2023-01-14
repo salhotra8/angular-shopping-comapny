@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 col-lg-8">
             <h3 class="my-3 ">Billing address</h3>
-            <form class="needs-validation" novalidate>
+            <form #shippingForm="ngForm" >
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label class="form-label" for="firstName">First name</label>
@@ -30,10 +30,10 @@
                     <label class="form-label" for="email">Email</label>
                     <div class="input-group">
                         <input type="email" class="form-control" id="email" placeholder="you@example.com" ngModel
-                            #email="ngModel" name="email" required>
+                            #email="ngModel" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                     </div>
-                    <ngb-alert *ngIf="email.invalid && (email.dirty || email.touched)" type="danger"
-                        [dismissible]="false">Email is required</ngb-alert>
+                    <ngb-alert *ngIf="email.invalid && email.touched" type="danger"
+                        [dismissible]="false">Please Enter Valid Email</ngb-alert>
                 </div>
 
 
@@ -157,8 +157,22 @@
                         UPI / Wallet
                     </label>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg my-2 p-2 ">Place Order</button>
+                <button type="submit" class="btn btn-primary btn-lg my-2 p-2" [disabled]="!shippingForm.valid" (click)="placeOrder(shippingForm.value, content); shippingForm.reset()">Place Order {{totalPrice | currency}}</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Success!</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <p>Order Placed Successfully</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="refreshPage()">Ok</button>
+    </div>
+  </ng-template>

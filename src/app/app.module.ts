@@ -1,3 +1,4 @@
+import { OrderService } from './services/order.service';
 import { ToastsContainer } from './toasts-container.component';
 import { UserService } from './services/user.service';
 import { ProductService } from './services/product.service';
@@ -62,7 +63,8 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     DataTableService,
     ProductService,
     UserService,
-    ShoppingCartService ],
+    ShoppingCartService,
+    OrderService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

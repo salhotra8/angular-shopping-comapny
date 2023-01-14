@@ -1,4 +1,9 @@
+import { AuthenticationService } from './../services/authentication.service';
+import { OrderService } from './../services/order.service';
+import { ShoppingCartService } from './../services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
+import { states } from '../../assets/states';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shipping-form',
@@ -7,49 +12,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShippingFormComponent implements OnInit {
 
-  states = {
-    "AN": "Andaman and Nicobar Islands",
-    "AP": "Andhra Pradesh",
-    "AR": "Arunachal Pradesh",
-    "AS": "Assam",
-    "BR": "Bihar",
-    "CG": "Chandigarh",
-    "CH": "Chhattisgarh",
-    "DN": "Dadra and Nagar Haveli",
-    "DD": "Daman and Diu",
-    "DL": "Delhi",
-    "GA": "Goa",
-    "GJ": "Gujarat",
-    "HR": "Haryana",
-    "HP": "Himachal Pradesh",
-    "JK": "Jammu and Kashmir",
-    "JH": "Jharkhand",
-    "KA": "Karnataka",
-    "KL": "Kerala",
-    "LA": "Ladakh",
-    "LD": "Lakshadweep",
-    "MP": "Madhya Pradesh",
-    "MH": "Maharashtra",
-    "MN": "Manipur",
-    "ML": "Meghalaya",
-    "MZ": "Mizoram",
-    "NL": "Nagaland",
-    "OR": "Odisha",
-    "PY": "Puducherry",
-    "PB": "Punjab",
-    "RJ": "Rajasthan",
-    "SK": "Sikkim",
-    "TN": "Tamil Nadu",
-    "TS": "Telangana",
-    "TR": "Tripura",
-    "UP": "Uttar Pradesh",
-    "UK": "Uttarakhand",
-    "WB": "West Bengal"
+  totalPrice!: number;
+  states = states;
+  cartItems!: any[];
+  user: any;
+
+  constructor(private cartService: ShoppingCartService,
+     private orderService: OrderService,
+     private auth : AuthenticationService) {
+    this.cartService.shoppingCartDocument.valueChanges().pipe(take(1)).subscribe((data: any) => {
+      if (data) {
+        let cartData = data;
+        let totalPrice = 0;
+        for (let data of cartData.products) {
+          totalPrice = totalPrice + (data.product.price * data.quantity);
+        }
+        this.totalPrice = totalPrice;
+        this.cartItems = data.products;
+      }
+    })
+
+    this.auth.UserCheck().pipe(take(1)).subscribe((user: any) => {
+      if (user) {
+        this.user = user;
+      }
+    })
   }
 
-  constructor() { }
-
   ngOnInit(): void {
+  }
+
+  placeOrder(shippingDetails: any, content: any ){
+    let orderDetails = {
+      orderDate: new Date,
+      items: this.cartItems,
+      shippingDetails:  shippingDetails,
+      totalPrice : this.totalPrice,
+      user: this.user.uid
+    }
+
+    this.orderService.placeOrder(orderDetails, content);
+  }
+
+  refreshPage(){
+    location.href = '/home';
   }
 
 }

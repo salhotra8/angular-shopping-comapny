@@ -107,7 +107,7 @@ export class ShoppingCartService {
         // console.log(this.cartProducts);
       }
     });
-    // return this.shoppingCartDocument;
+    return this.shoppingCartDocument;
     // return this.subject.asObservable();
 
   }
@@ -127,6 +127,10 @@ export class ShoppingCartService {
 
   changeStep(value: boolean) {
     this.loading.next(value);
+  }
+
+  clearCart(){
+    sessionStorage.clear();
   }
 
 }
