@@ -29,6 +29,7 @@ import { NgbdSortableDirective } from './sortable.directive';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     NgbdSortableDirective,
     ShoppingCartComponent,
     ShippingFormComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,

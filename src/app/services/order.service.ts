@@ -1,3 +1,4 @@
+import { ShoppingCart } from './../model/shopping-cart';
 import { ShoppingCartService } from './shopping-cart.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Injectable } from '@angular/core';
@@ -20,6 +21,11 @@ export class OrderService {
       this.modalService.open(content);
       this.cartService.clearCart();
     })
+  }
+
+  getOrders(){
+    return this.orderCollection.valueChanges()
+
   }
 
 

@@ -48,7 +48,7 @@ export class ShippingFormComponent implements OnInit {
       items: this.cartItems,
       shippingDetails:  shippingDetails,
       totalPrice : this.totalPrice,
-      user: this.user.uid
+      user: (this.user ? this.user.uid : null)
     }
 
     this.orderService.placeOrder(orderDetails, content);

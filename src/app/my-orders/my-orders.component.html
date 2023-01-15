@@ -1,0 +1,58 @@
+<div class="order-container d-flex">
+<div class="return-container" routerLink="/home">
+    <button class="btn btn-back"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+            class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+            <path
+                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+        </svg>Back To Shopping</button>
+</div>
+
+
+<div class="container py-5 h-85">
+
+    <div class="row d-flex align-items-center h-100">
+
+        <div class="col-11">
+            <h1 class="fw-bold mb-0 text-black">My Orders</h1>
+            <div *ngFor="let order of myOrders" class="card card-registration my-4"
+                style="border-radius: 15px;">
+                <div class="card-body p-0">
+                    <div class="cart-container p-4">
+                        <div class="d-flex" id="date-container">
+                            <h6 class="p-1">Order Date : </h6>
+                            <h6 class="p-1">{{order.orderDate.toDate() | date }}</h6>
+                        </div>
+                        <hr class="mb-4">
+                        <div *ngFor="let items  of order.items"
+                            class="row mb-4 d-flex justify-content-between align-items-center">
+                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                <img [src]="items.product.imageUrl" class="img-fluid rounded-3" id="product-image" alt="Product Image">
+                            </div>
+                            <div class="col-md-3 col-lg-4 col-xl-3 d-flex">
+                                <h5 class="text-black mb-0">{{items.product.productName}}</h5>
+
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-xl-3 d-flex align-items-center justify-content-center">
+
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-xl-2 d-flex" id="product-price">
+                                <h6 class="mb-0">Oty:&nbsp;{{items.quantity}}</h6>
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-xl-2 d-flex" id="product-price">
+                                <h6 class="mb-0">{{items.product.price | currency}}</h6>
+                            </div>
+                            
+                        </div>
+                        <hr class="my-3">
+                        <div class="d-flex justify-content-between" id="total-container">
+                            <h4 class="px-1">Total Amount</h4>
+                            <h3 class="px-3">{{order.totalPrice | currency}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

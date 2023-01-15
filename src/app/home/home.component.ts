@@ -1,10 +1,9 @@
 import { ToastServiceService } from './../services/toast-service.service';
 import { ShoppingCartService } from './../services/shopping-cart.service';
-import { SortColumn } from './../sortable.directive';
 import { DataTableService } from './../services/data-table.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../services/category.service';
-import { delay, Observable, take, map } from 'rxjs';
+import { Observable, take} from 'rxjs';
 import { ProductService } from './../services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../model/product';
@@ -14,7 +13,7 @@ import { Product } from '../model/product';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   products!: Product[];
   categories$!: Observable<any[]>;
   id: any;
@@ -26,6 +25,12 @@ export class HomeComponent implements OnInit{
   loading!: boolean;
 
   sorting = [
+    {
+      sortBy: 'Relevance',
+      column: 'productName',
+      direction: ''
+    },
+
     {
       sortBy: 'Name: A to Z',
       column: 'productName',
@@ -70,6 +75,7 @@ export class HomeComponent implements OnInit{
       this.filteredProducts = data;
       this.sortedProducts = data;
       this.filterByCategory(this.id);
+      // if(!this.sortByMethod) this.sortByMethod = 'Relevance';
     })
 
     this.categories$ = this.categoryService.getCategory();
@@ -102,15 +108,15 @@ export class HomeComponent implements OnInit{
 
   // }
 
-  incrementQuantity(product: Product){
-    if(!product.quantity) product.quantity = 1;
+  incrementQuantity(product: Product) {
+    if (!product.quantity) product.quantity = 1;
     product.quantity++;
-    
+
   }
-  decrementQuantity(product: Product){
-    if(product.quantity)
-    product.quantity--;
+  decrementQuantity(product: Product) {
+    if (product.quantity)
+      product.quantity--;
   }
- 
+
 
 }

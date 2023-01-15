@@ -1,16 +1,4 @@
-<div>
-    <div ngbDropdown class="block">
-        <button type="button" class="btn btn-secondary" id="dropdownSorting" ngbDropdownToggle>
-            <span style="font-weight:400;">Sort By:&nbsp;&nbsp; </span>{{sortByMethod}}</button>
-        <div ngbDropdownMenu class="dropdownSortingList">
-            <button [class.sortByActive]="sortByMethod === sort.sortBy" class="btn btn-secondary"
-                *ngFor="let sort of sorting" ngbDropdownItem
-                (click)="sortProducts(sort.column, sort.direction,  sort.sortBy)">{{sort.sortBy}}</button>
-        </div>
-
-    </div>
-
-
+<div class="home-container">
     <div class="container text-center">
         <div class="row">
             <div class="col-categories">
@@ -27,6 +15,15 @@
             </div>
             <div class="col">
                 <div class="row">
+                    <div ngbDropdown class="block">
+                        <button type="button" class="btn btn-secondary" id="dropdownSorting" ngbDropdownToggle>
+                            <span style="font-weight:400;">Sort By:&nbsp;&nbsp;</span>{{sortByMethod}}</button>
+                        <div ngbDropdownMenu class="dropdownSortingList">
+                            <button [class.sortByActive]="sortByMethod === sort.sortBy" class="btn btn-secondary"
+                                *ngFor="let sort of sorting" ngbDropdownItem
+                                (click)="sortProducts(sort.column, sort.direction,  sort.sortBy)">{{sort.sortBy}}</button>
+                        </div>
+                    </div>
                     <div class="col" *ngFor="let product of sortedProducts">
                         <div class="card">
                             <div class="image-container"><img [src]="product.imageUrl" class="card-img-top"
@@ -37,19 +34,22 @@
 
                             </div>
                             <div id="product-actions">
-                                <button class="btn card-btn" id="update-quantity" (click)="decrementQuantity(product)" [disabled]="(product.quantity == undefined || product.quantity == 1)">-</button>
-                                <input type="text" class="product-quantity form-control form-control-sm" [value]="product.quantity || 1" readonly #productQuantity>
-                                <button class="btn card-btn" id="update-quantity" (click)="incrementQuantity(product)" [disabled]="product.quantity == 10">+</button>
-                                <button class="btn card-btn" id="add-cart" (click)="addToCart(product, productQuantity.value)"
-                                    [disabled]="loading">Add to cart
+                                <button class="btn card-btn" id="update-quantity" (click)="decrementQuantity(product)"
+                                    [disabled]="(product.quantity == undefined || product.quantity == 1)">-</button>
+                                <input type="text" class="product-quantity form-control form-control-sm"
+                                    [value]="product.quantity || 1" readonly #productQuantity>
+                                <button class="btn card-btn" id="update-quantity" (click)="incrementQuantity(product)"
+                                    [disabled]="product.quantity == 10">+</button>
+                                <button class="btn card-btn" id="add-cart"
+                                    (click)="addToCart(product, productQuantity.value)" [disabled]="loading">Add to cart
                                 </button>
-                               
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>

@@ -35,9 +35,8 @@ img {
 }
 
 .col-categories {
-    max-width: 25%;
-    margin-top: -60px;
-    margin-left: -40px;
+    width: 25%;
+    margin-top: -40px;
 }
 
 .list-group-item {
@@ -64,9 +63,6 @@ img {
     width: fit-content;
 }
 
-.container{
-    position: absolute;
-}
 
 #dropdownSorting{
  font-weight: 600;
@@ -105,3 +101,17 @@ img {
     border-radius: 105px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  
 }
+
+
+@media (max-width: 768px) {
+    .col-categories{
+        width: 70%;
+        margin-bottom: 50px;
+    }
+    
+}
+
+.home-container{
+    width: 100%;
+}
+

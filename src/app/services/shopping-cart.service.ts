@@ -19,7 +19,7 @@ export class ShoppingCartService {
 
   constructor(private afs: AngularFirestore, private toastService: ToastServiceService) {
     this.shoppingCartCollection = afs.collection<ShoppingCart>('shopping-carts');
-    this.cartId = sessionStorage.getItem('cartId');
+    this.cartId = localStorage.getItem('cartId');
     this.shoppingCartDocument = this.afs.doc<ShoppingCart>(`shopping-carts/${this.cartId}`);
     this.getCart();
 
@@ -35,7 +35,7 @@ export class ShoppingCartService {
     this.changeStep(true);
     if (!this.cartId) {
       let result = await this.createCart(product, productQuantity);
-      sessionStorage.setItem('cartId', result.id);
+      localStorage.setItem('cartId', result.id);
       this.cartId = result.id;
       this.changeStep(false);
       this.getCart();
@@ -97,7 +97,6 @@ export class ShoppingCartService {
 
   getCart() {
     this.shoppingCartDocument = this.afs.doc<ShoppingCart>(`shopping-carts/${this.cartId}`);
-    console.log(this.cartId);
     this.shoppingCartDocument.valueChanges().pipe(take(1)).subscribe(data => {
       // console.log(data);
       if (data) {
@@ -119,7 +118,7 @@ export class ShoppingCartService {
       for (let cart of cartData) {
         quantity = quantity + cart.quantity
       }
-      console.log(quantity);
+      // console.log(quantity);
       this.totalItems.next(quantity);
     }
     // else this.totalItems = 0;
@@ -130,7 +129,7 @@ export class ShoppingCartService {
   }
 
   clearCart(){
-    sessionStorage.clear();
+    localStorage.clear();
   }
 
 }
