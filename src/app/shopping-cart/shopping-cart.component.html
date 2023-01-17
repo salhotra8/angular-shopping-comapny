@@ -15,13 +15,14 @@
                     <hr class="my-3">
 
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
-                      <div class="col-md-2 col-lg-2 col-xl-2">
+                      <div class="col-md-2 col-lg-2 col-xl-2 d-flex justify-content-center">
                         <img [src]="cart.product.imageUrl" class="img-fluid rounded-3" alt="Product Image">
                       </div>
-                      <div class="col-md-3 col-lg-4 col-xl-3">
+                      <div class="col-md-3 col-lg-4 col-xl-3" id="product-name">
+                      <div>
                         <h4 class="text-black mb-0">{{cart.product.productName}}</h4>
-                        <h6 class="text-muted">{{cart.product.category}}</h6>
-
+                        <h6 class="text-muted d-flex" id="product-category">{{cart.product.category}}</h6>
+                      </div>
                       </div>
                       <div class="col-md-2 col-lg-2 col-xl-3 d-flex align-items-center justify-content-center">
 
@@ -34,19 +35,19 @@
 
 
                       </div>
-                      <div class="col-md-2 col-lg-2 col-xl-2 d-flex" id="product-price">
-                        <h6 class="mb-0">{{cart.product.price | currency}}</h6>
+                      <div class="col-md-2 col-lg-2 col-xl-2 d-flex" id="price-div">
+                        <h6 class="mb-0" id="product-price">{{cart.product.price | currency}}</h6>
                       </div>
 
 
-                      <div class="col-1" id="delete-product" type="button" (click)="deleteProduct(cart.product)"><svg
+                      <div class="delete-div d-flex col-1"><button class=" btn delete-product"(click)="deleteProduct(cart.product)"><svg
                           xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           class="bi bi-x-lg" viewBox="0 0 16 16">
                           <path
                             d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
                         </svg>
-                      </div>
-
+                      </button>
+                    </div>
                     </div>
                   </div>
                 </div>

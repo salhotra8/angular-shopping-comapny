@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <form class="col" (ngSubmit)="saveProduct(ProductForm.value, content);ProductForm.resetForm()"
+    <form class="col" id="product-form" (ngSubmit)="saveProduct(ProductForm.value, content);ProductForm.resetForm()"
       #ProductForm="ngForm">
 
       <div class="mb-3">

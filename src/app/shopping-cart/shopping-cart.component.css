@@ -98,15 +98,48 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 2px;
       }
     
-      #delete-product{
+      .delete-product{
         padding: 5px 10px;
         border-radius: 20px;
       }
 
-      .bi-x-lg:hover{
+      /* .bi-x-lg:hover{
+        color: rgb(171, 37, 37);
+      } */
+
+      #price-div{
+        padding-left: 20px;
+      }
+
+      @media (max-width:767.9px) {
+        .delete-div{
+          justify-content: end;
+          width:-webkit-fill-available;
+          margin-top: -35px;
+        }
+        #price-div{
+          margin-top: 30px;
+          justify-content: center;
+        }
+        #product-name{
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 5px;
+        }
+        #product-category{
+          justify-content: center;
+        }
+        .btn-update{
+          margin: auto 5px;
+        }
+        #product-price{
+          font-size:x-large;
+        }
+      }
+
+      .delete-product:hover .bi-x-lg{
         color: rgb(171, 37, 37);
       }
 
-      #product-price{
-        padding-left: 25px;
-      }
+    

@@ -35,5 +35,9 @@ export class NavbarComponent implements OnInit {
     // return (this.cartService.totalItems ? this.cartService.totalItems : 0)
   }
 
+  collapseNavbar(){
+    this.isMenuCollapsed = true;
+  }
+
 
 }

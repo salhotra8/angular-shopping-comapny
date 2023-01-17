@@ -43,3 +43,9 @@
  font-size: large;
  margin-left: -15px;
 }
+@media (max-width: 991.9px){
+.nav-item{
+    padding-top: 20px;
+    font-size: larger;
+}
+}

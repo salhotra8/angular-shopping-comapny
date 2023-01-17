@@ -16,7 +16,7 @@ import { outputAst } from '@angular/compiler';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  @Output() cartItems: any[] = [];
+  cartItems: any[] = [];
   totalItems: number = 0;
   loading!: boolean;
   totalPrice: number = 0;

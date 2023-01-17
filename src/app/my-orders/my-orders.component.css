@@ -26,6 +26,7 @@
 .btn-back {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     font-weight: 500;
+    border-radius: 1.8rem;
 }
 
 #total-container {
@@ -50,5 +51,10 @@
 #date-container{
  color: grey;
  flex-wrap: wrap;
+}
+
+.btn-back:hover{
+    background-color:rgb(192, 192, 192);
+    
 }
 
