@@ -1,9 +1,8 @@
-import { ToastServiceService } from './../services/toast-service.service';
 import { ShoppingCartService } from './../services/shopping-cart.service';
 import { DataTableService } from './../services/data-table.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from './../services/category.service';
-import { Observable, take} from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { ProductService } from './../services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../model/product';
@@ -13,7 +12,7 @@ import { Product } from '../model/product';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   products!: Product[];
   categories$!: Observable<any[]>;
   id: any;
@@ -50,32 +49,31 @@ export class HomeComponent implements OnInit {
   ]
   totalItems: number = 0;
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private datatableService: DataTableService,
     private shoppingCartService: ShoppingCartService,
-    public cartService: ShoppingCartService,
-    public toastService: ToastServiceService) {
+    private cartService: ShoppingCartService,
+    private router: Router) {
+
     this.route.queryParamMap.subscribe(c => {
       this.id = c.get('category');
       this.sortColumn = c.get('c')
       this.sortDirection = c.get('s');
       this.sortByMethod = c.get('m');
+      if (!this.sortByMethod) this.sortByMethod = 'Relevance';
     })
 
     this.cartService.loading.subscribe(val => this.loading = val);
-
-
   }
 
   ngOnInit() {
     this.productService.getAllProducts().pipe(take(1)).subscribe(data => {
       this.products = data;
-      this.filteredProducts = data;
       this.sortedProducts = data;
       this.filterByCategory(this.id);
-      // if(!this.sortByMethod) this.sortByMethod = 'Relevance';
     })
 
     this.categories$ = this.categoryService.getCategory();
@@ -87,26 +85,33 @@ export class HomeComponent implements OnInit {
       this.filteredProducts = this.products.filter(c => c.category.toLowerCase().includes(category.toLowerCase()))
     }
     else this.filteredProducts = this.products;
-    this.sortProducts(this.sortColumn, this.sortDirection);
+
+    this.sortProducts(this.sortColumn, this.sortDirection, this.sortByMethod, this.filteredProducts);
   }
 
-  sortProducts(column: any, direction: any, sortBy?: any,) {
-    if (sortBy) this.sortByMethod = sortBy;
+  sortProducts(column: any, direction: any, sortBy: any, products: any = this.filteredProducts) {
+    this.sortByMethod = sortBy;
     this.sortColumn = column;
     this.sortDirection = direction;
-    this.sortedProducts = this.datatableService.sort(this.filteredProducts, column, direction);
-  }
+    this.sortedProducts = this.datatableService.sort(products, column, direction);
 
+  }
+  navigation(sortColumn: any, sortDirection: any, sortByMethod: any) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        s: sortDirection || null,
+        c: sortColumn,
+        m: sortByMethod
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
 
   addToCart(product: any, productQuantity: any) {
     this.shoppingCartService.createOrUpdateCart(product, parseInt(productQuantity), 'Product Added Successfully')
 
   }
-
-  // deleteFromCart(product: any) {
-  //   this.cartService.removeFromCart(product);
-
-  // }
 
   incrementQuantity(product: Product) {
     if (!product.quantity) product.quantity = 1;
@@ -118,5 +123,8 @@ export class HomeComponent implements OnInit {
       product.quantity--;
   }
 
+  ngOnDestroy() {
+    this.cartService.loading.unsubscribe;
+  }
 
 }

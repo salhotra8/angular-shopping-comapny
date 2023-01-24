@@ -10,12 +10,12 @@ import { take } from 'rxjs';
   styleUrls: ['./my-orders.component.css']
 })
 export class MyOrdersComponent implements OnInit {
-  myOrders: any= [];
+  myOrders: any = [];
   user: any;
 
   constructor(private orderService: OrderService,
     private auth: AuthenticationService) {
-    
+
     this.user = this.auth.user;
   }
 
@@ -30,7 +30,6 @@ export class MyOrdersComponent implements OnInit {
 
         }
       }
-      console.log(this.myOrders);
     })
   }
 

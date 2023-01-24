@@ -1,94 +1,95 @@
 <div class="container">
   <div class="row">
 
-    <form class="col" id="product-form" (ngSubmit)="saveProduct(ProductForm.value, content);ProductForm.resetForm()"
-      #ProductForm="ngForm">
+    <div class="col-lg-7">
+      <form id="product-form" (ngSubmit)="saveProduct(ProductForm.value, content);ProductForm.resetForm()"
+        #ProductForm="ngForm">
 
-      <div class="mb-3">
-        <label class="form-label">Product Name</label>
-        <div class="form-group">
-          <input type="text" class="form-control" [ngModel]="product?.productName" #productName="ngModel"
-            name="productName" required>
-          <ngb-alert *ngIf="productName.invalid && (productName.dirty || productName.touched)" type="danger"
-            [dismissible]="false">Name is required</ngb-alert>
+        <div class="mb-3">
+          <label class="form-label">Product Name</label>
+          <div class="form-group">
+            <input type="text" class="form-control" [ngModel]="product?.productName" #productName="ngModel"
+              name="productName" required>
+            <ngb-alert *ngIf="productName.invalid && (productName.dirty || productName.touched)" type="danger"
+              [dismissible]="false">Name is required</ngb-alert>
+          </div>
         </div>
-      </div>
 
-
-      <div class="mb-3">
-        <label class="form-label">Price</label>
-        <div class="input-group form-group">
-          <span class="input-group-text">$</span>
-          <input type="number" class="form-control" [ngModel]="product?.price" #productPrice="ngModel" name="price"
-            required>
+        <div class="mb-3">
+          <label class="form-label">Price</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" [ngModel]="product?.price" #productPrice="ngModel" name="price"
+              required>
+          </div>
+          <div class="alert-price">
+            <ngb-alert *ngIf="productPrice.invalid && (productPrice.dirty || productPrice.touched)" type="danger"
+              [dismissible]="false">Price is required</ngb-alert>
+          </div>
         </div>
-        <div class="alert-price">
-          <ngb-alert *ngIf="productPrice.invalid && (productPrice.dirty || productPrice.touched)" type="danger"
-            [dismissible]="false">Price is required</ngb-alert>
+
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <div class="form-group">
+            <select class="form-select" (ngModelChange)="showSubCategory($event)" [ngModel]="product?.category"
+              #productCategory="ngModel" name="category" id="category" required>
+              <option disabled selected value="undefined">Select an Option</option>
+              <option *ngFor="let category of category | async" [value]="category">
+                {{category}}
+              </option>
+            </select>
+            <ngb-alert *ngIf="productCategory.invalid && (productCategory.touched)" type="danger" [dismissible]="false">
+              Select a Category</ngb-alert>
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label class="form-label">Category</label>
-        <div class="form-group">
-          <select class="form-select" (ngModelChange)="showSubCategory($event)" [ngModel]="product?.category"
-            #productCategory="ngModel" name="category" id="category" required>
-            <option disabled selected value="undefined">Select an Option</option>
-            <option *ngFor="let category of category | async" [value]="category">
-              {{category}}
-            </option>
-          </select>
-          <ngb-alert *ngIf="productCategory.invalid && (productCategory.touched)" type="danger" [dismissible]="false">
-            Select a Category</ngb-alert>
+        <div class="mb-3">
+          <label class="form-label">Sub-Category</label>
+          <div class="form-group">
+            <select class="form-select" [ngModel]="product?.subCategory" #productSubCategory="ngModel"
+              name="subCategory" required>
+              <option disabled selected value="undefined">Select an Option</option>
+              <option *ngFor="let subCategory of subCategory | async" [value]="subCategory">
+                {{subCategory}}</option>
+            </select>
+            <ngb-alert *ngIf="productSubCategory.invalid && (productSubCategory.touched)" type="danger"
+              [dismissible]="false">
+              Select a Category</ngb-alert>
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label class="form-label">Sub-Category</label>
-        <div class="form-group">
-          <select class="form-select" [ngModel]="product?.subCategory" #productSubCategory="ngModel" name="subCategory"
-            required>
-            <option disabled selected value="undefined">Select an Option</option>
-            <option *ngFor="let subCategory of subCategory | async" [value]="subCategory">
-              {{subCategory}}</option>
-          </select>
-          <ngb-alert *ngIf="productSubCategory.invalid && (productSubCategory.touched)" type="danger"
-            [dismissible]="false">
-            Select a Category</ngb-alert>
+        <div class="mb-3">
+          <label class="form-label">Image Url</label>
+          <div class="form-group">
+            <input type="text" class="form-control" [ngModel]="product?.imageUrl" #productImage="ngModel"
+              name="imageUrl" required>
+            <ngb-alert *ngIf="productImage.invalid && (productImage.dirty || productImage.touched)" type="danger"
+              [dismissible]="false">Image Url is required</ngb-alert>
+          </div>
         </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Image Url</label>
-        <div class="form-group">
-          <input type="text" class="form-control" [ngModel]="product?.imageUrl" #productImage="ngModel" name="imageUrl"
-            required>
-          <ngb-alert *ngIf="productImage.invalid && (productImage.dirty || productImage.touched)" type="danger"
-            [dismissible]="false">Image Url is required</ngb-alert>
-        </div>
-      </div>
-      <button *ngIf="!product; else update" type="submit" class="btn btn-primary" [disabled]="!ProductForm.form.valid">Submit</button>
-      <ng-template #update><button class="btn btn-success" type="submit" [disabled]="!ProductForm.form.valid">Update</button></ng-template>
-      <button class="btn btn-secondary" id="back-button" type="button" routerLink="/admin/product">Back</button>
-    </form>
+        <button *ngIf="!product; else update" type="submit" class="btn btn-primary"
+          [disabled]="!ProductForm.form.valid">Submit</button>
+        <ng-template #update><button class="btn btn-success" type="submit"
+            [disabled]="!ProductForm.form.valid">Update</button></ng-template>
+        <button class="btn btn-secondary" id="back-button" type="button" routerLink="/admin/product">Back</button>
+      </form>
+    </div>
 
 
-    <div class="col"> 
+    <div class="col-lg-5 mb-3">
       <div *ngIf="productName.value || productPrice.value || productCategory.value || productImage.value " class="card">
         <img [src]="productImage.value" class="card-img-top">
         <div class="card-body">
           <h3 class="card-title">{{productName.value}}</h3>
-          <h5 class="card-title">{{productPrice.value | currency:'$'}}</h5>
           <p class="card-text">{{productCategory.value}}
             <span *ngIf="productSubCategory.value" style="font-weight:700;"> > </span>
             {{productSubCategory.value}}
           </p>
+          <h5 class="card-title">{{productPrice.value | currency:'$'}}</h5>
         </div>
       </div>
     </div>
-
   </div>
-
 
 
   <ng-template #content let-c="close" let-d="dismiss">
@@ -98,7 +99,9 @@
     </div>
     <div class="modal-body">
       <p *ngIf="!product; else updated">Product Added</p>
-      <ng-template #updated><p>Product Updated</p></ng-template>
+      <ng-template #updated>
+        <p>Product Updated</p>
+      </ng-template>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Close')">Ok</button>

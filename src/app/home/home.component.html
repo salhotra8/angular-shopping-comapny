@@ -19,9 +19,9 @@
                         <button type="button" class="btn btn-secondary" id="dropdownSorting" ngbDropdownToggle>
                             <span style="font-weight:400;">Sort By:&nbsp;&nbsp;</span>{{sortByMethod}}</button>
                         <div ngbDropdownMenu class="dropdownSortingList">
-                            <button [class.sortByActive]="sortByMethod === sort.sortBy" class="btn btn-secondary"
-                                *ngFor="let sort of sorting" ngbDropdownItem
-                                (click)="sortProducts(sort.column, sort.direction,  sort.sortBy)">{{sort.sortBy}}</button>
+                            <button class="btn btn-secondary" *ngFor="let sort of sorting"
+                                [class.sortByActive]="sortByMethod === sort.sortBy" ngbDropdownItem
+                                (click)="navigation(sort.column, sort.direction, sort.sortBy); sortProducts(sort.column, sort.direction,  sort.sortBy)">{{sort.sortBy}}</button>
                         </div>
                     </div>
                     <div class="col" *ngFor="let product of sortedProducts">

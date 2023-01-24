@@ -88,7 +88,7 @@ export class DataTableService {
   sort(products: any[], column = this._state.sortColumn, direction: string = this._state.sortDirection): any[] {
 
     const compare = (v1: string | any, v2: string | any) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
-    if (direction === '' || column === '') {
+    if (!direction || !column) {
       return products;
     } else {
       return [...products].sort((a, b) => {
@@ -100,9 +100,9 @@ export class DataTableService {
 
   search(product: Product[], term: string = this._state.searchTerm, pipe: PipeTransform = this.pipe) {
     const data = product.filter(p => {
-     return p.productName.toLowerCase().includes(term.toLowerCase()) ||
-      pipe.transform(p.price).includes(term) ||
-      p.category.toLowerCase().includes(term.toLowerCase())
+      return p.productName.toLowerCase().includes(term.toLowerCase()) ||
+        pipe.transform(p.price).includes(term) ||
+        p.category.toLowerCase().includes(term.toLowerCase())
     });
     return data;
   }

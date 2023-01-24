@@ -24,8 +24,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="mb-3">
                     <label class="form-label" for="email">Email</label>
                     <div class="input-group">
@@ -51,7 +49,7 @@
 
 
                 <div class="row">
-                    <div class="col-md-5 mb-4">
+                    <div class="col-md-5 mb-4 me-3">
                         <label class="form-label" for="state">State</label>
                         <select class="form-select p-2">
                             <option style="font-size: larger;" *ngFor="let state of states | keyvalue"
@@ -59,26 +57,26 @@
                         </select>
                     </div>
 
-                    <div class="col-md-4 mb-4 ms-4">
-                        <label class="form-label" for="country">Country</label>
-                        <select class="form-select" aria-label="Default select example" disabled>
+                    <div class="col-md-5 mb-4"  id="country-div" >
+                        <label class="form-label"for="country">Country</label>
+                        <select class="form-select p-2" aria-label="Default select example" disabled>
                             <option selected>INDIA</option>
                         </select>
                     </div>
 
 
-                    <div class="col-md-5 mb-3">
+                    <div class="col-md-5 mb-3 me-3">
                         <label class="form-label">Contact No.</label>
                         <div class="input-group">
                             <span class="input-group-text">+91</span>
-                            <input type="text" class="form-control" id="contactNumber" ngModel #contactNumber="ngModel"
+                            <input class="form-control" type="text" id="contactNumber" ngModel #contactNumber="ngModel"
                                 name="contactNumber" required>
                         </div>
                         <ngb-alert *ngIf="contactNumber.invalid && (contactNumber.dirty || contactNumber.touched)"
                             type="danger" [dismissible]="false">Contact number is required</ngb-alert>
                     </div>
 
-                    <div class="col-md-4 mb-4 ms-4">
+                    <div class="col-md-5 mb-4" id="pincode-div">
                         <label class="form-label">Pincode</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="pincode" ngModel #pincode="ngModel"
@@ -106,7 +104,6 @@
             </form>
         </div>
         
-
 
         <div class="col-lg-4 mb-4">
             <h3 class="my-3 ms-2">Payment</h3>

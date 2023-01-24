@@ -1,51 +1,93 @@
-.navbar{
+.navbar {
     height: auto;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     background-color: rgb(25, 121, 121);
     border-radius: .3rem;
 }
 
-.navbar-brand{
+.navbar-brand {
     width: 9.5rem;
     height: 4.5rem;
     margin-top: -10px;
     margin-bottom: -10px;
-    border-radius: 15px;    
+    border-radius: 15px;
 }
 
-.navbar-div{
+.navbar-div {
     margin-bottom: 100px;
 }
-.cart-logo{
+
+.cart-logo {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 100px;
     padding: 12px 8px;
-    background-color:rgb(26, 165, 165);
+    background-color: rgb(26, 165, 165);
     border-color: rgb(26, 129, 129);
 }
 
-.cart-logo:hover{
+.cart-logo:hover,
+.nav-link-btn:hover {
     background-color: rgb(63, 204, 204);
 }
-.cart-logo:focus{
-    background-color: rgb(114, 233, 233);;
+
+.cart-logo:focus,
+.nav-link-btn:focus {
+    background-color: rgb(114, 233, 233);
+    ;
 }
 
-.cart-quantity{
- background-color: yellow;
- border-radius: 50px;
- height: 22px;
- width: 24px;
- font-weight: 600;
- display: flex;
- justify-content: center;
- align-items: center;
- font-size: large;
- margin-left: -15px;
+.cart-quantity {
+    background-color: yellow;
+    border-radius: 50px;
+    height: 22px;
+    width: 24px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    margin-left: -15px;
 }
-@media (max-width: 991.9px){
-.nav-item{
-    padding-top: 20px;
+
+@media (max-width: 991.9px) {
+    .nav-item {
+        padding-top: 20px;
+        font-size: larger;
+    }
+}
+
+.dropdown-item {
+    padding: 15px 30px;
+    font-weight: 550;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.dropdown-item:hover {
+    border-radius: 4px;
+}
+
+
+.nav-link-btn {
+    background-color: rgb(26, 165, 165);
+    border-color: rgb(26, 129, 129);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-weight: 550;
+    width: 100px;
+    padding: 5px;
     font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.dropdown-toggle {
+    font-size: larger;
+    color: aliceblue;
+}
+
+@media (min-width: 991.9px) {
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+        /* remove the gap so it doesn't close */
+    }
 }
