@@ -1,22 +1,22 @@
 .card {
-    width: 18.7rem;
+    width: 18rem;
     border-radius: 15px;
     margin: auto auto 2rem auto;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     display: grid;
-    height: 25rem;
+    height: auto;
     padding: 1rem 1rem;
 }
 
 
 img {
     /* height: 85%; */
-    object-fit:contain;
+    object-fit: contain;
     /* border-radius: 1.5rem; */
 
 }
 
-.image-container{
+.image-container {
     min-height: 15rem;
     max-height: 15rem;
     display: flex;
@@ -31,6 +31,8 @@ img {
 .card-title {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 600;
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -42,15 +44,15 @@ img {
 .list-group-item {
     display: flex;
     padding: 1rem 1.2rem;
-    font-weight:450;
+    font-weight: 450;
 }
 
-.sticky-top{
+.sticky-top {
     top: 100px;
 }
 
-.block{
-    
+.block {
+
     display: flex;
     justify-content: flex-end;
     margin-bottom: 40px;
@@ -58,25 +60,25 @@ img {
 
 }
 
-.form-select{
+.form-select {
 
     width: fit-content;
 }
 
 
-#dropdownSorting{
- font-weight: 600;
+#dropdownSorting {
+    font-weight: 600;
 }
 
-.dropdownSortingList{
+.dropdownSortingList {
     width: 15rem;
 }
 
-.sortByActive{
+.sortByActive {
     background-color: grey;
 }
 
-.product-quantity{
+.product-quantity {
     width: 2.1rem;
     border-radius: 20px;
     display: inline-block;
@@ -84,10 +86,10 @@ img {
     font-weight: 500;
     /* margin-right: -50px ;
     margin-left:-60px ; */
-    
+
 }
 
-#update-quantity{
+#update-quantity {
     padding: 4px 0px;
     font-size: large;
     font-weight: 500;
@@ -97,28 +99,38 @@ img {
     width: 39px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-#add-cart{
+
+#add-cart {
     border-radius: 105px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 
 @media (max-width: 767.9px) {
-    .col-categories{
+    .col-categories {
         width: 350px;
         margin-bottom: 50px;
-        margin-top: 50px;
+        margin-top: 25px;
     }
-    
+
+    .block {
+        justify-content: center;
+    }
+
 }
 
 @media (max-width: 991.9px) {
-    .col-categories{
+    .col-categories {
         width: 250px;
     }
     
 }
-.home-container{
-    width: 100%;
+
+.container {
+    width: auto;
 }
 
+#product-actions {
+    display: flex;
+    justify-content: center;
+}
