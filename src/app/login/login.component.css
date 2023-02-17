@@ -1,31 +1,68 @@
-.container{
+* {
+    font-family: Arial, Helvetica, sans-serif !important;
+    /* Add !important to overwrite all elements */
+}
+
+.container {
     height: fit-content;
     border-radius: 20px;
     width: fit-content;
-    padding: 40px 30px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: auto; 
+    padding: 5px 48px 40px 45px;
+    box-shadow: rgba(9, 47, 47, 0.3) 0px 19px 38px, rgba(2, 36, 46, 0.215) 0px 15px 12px;
+    background-color: rgba(219, 237, 253, 0.215);
 }
 
-.row{
+.row {
     align-items: center;
     margin-top: 30px;
 }
 
-svg{
+svg {
     margin-right: 5px;
 }
 
-.btn{
-    padding: 8px;
+.btn {
+    padding: 9px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    font-weight: bold;
+    font-size: 17px;
 }
 
 .divider:after,
 .divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
 }
 
+input {
+    padding: 10px 15px;
+    width: 17rem;
+    margin-top: 23px;
+}
+
+.register {
+    font-weight: 600;
+}
+
+ngb-alert {
+    margin-bottom: -45px;
+    padding: 11px;
+}
+
+#loginBtn {
+    margin-top: 25px;
+}
+
+.signUpLink:hover {
+    color: rgb(45, 29, 181);
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding-left: 33px;
+        padding-right: 32px;
+    }
+
+}

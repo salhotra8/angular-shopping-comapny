@@ -1,3 +1,5 @@
+import { ToastServiceService } from './toast-service.service';
+import { ToastsContainer } from './../toasts-container.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from './../model/user-data';
 import { UserService } from './user.service';
@@ -18,24 +20,24 @@ export class AuthenticationService {
   constructor(private auth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-    private userService: UserService) {
+    private userService: UserService,
+    private toastService: ToastServiceService) {
 
-      this.UserCheck();
-    
+    this.UserCheck();
   }
 
-    UserCheck(){
-      return this.user$ = this.auth.authState.pipe(switchMap
-        ((user: any) => {
-          if (user) {
-            this.user = user;
-            return this.afs.doc<User>(`/users/${user.uid}`).valueChanges();
-  
-          }
-          else return of(null);
+  UserCheck() {
+    return this.user$ = this.auth.authState.pipe(switchMap
+      ((user: any) => {
+        if (user) {
+          this.user = user;
+          return this.afs.doc<User>(`/users/${user.uid}`).valueChanges();
+
         }
-        ));
-    }
+        else return of(null);
+      }
+      ));
+  }
 
 
   loginWithGoogle() {
@@ -63,27 +65,27 @@ export class AuthenticationService {
           this.router.navigate([this.redirectUrl]);
           this.redirectUrl = null;
         }
-
         else this.router.navigate(["/home"]);
-
-
       })
-
+      .catch(() => {
+        this.toastService.show("Please Enter Details", { classname: 'bg-danger text-light' })
+      })
   }
 
   signIn(email: string, password: string) {
     this.auth.signInWithEmailAndPassword(email, password).
       then((user) => {
-        this.userService.updateUser(user);
+        console.log("errro");
+        // this.userService.updateUser(user);
         if (this.redirectUrl) {
           this.router.navigate([this.redirectUrl]);
           this.redirectUrl = null;
         }
-
         else this.router.navigate(["/home"]);
-        console.log(user);
-
-      });
+      })
+      .catch(() => {
+        this.toastService.show("Invalid Credentials", { classname: 'bg-danger text-light' })
+      })
   }
 
 
@@ -91,6 +93,5 @@ export class AuthenticationService {
     this.auth.signOut();
     this.router.navigate(['/home'])
   }
-
 
 }

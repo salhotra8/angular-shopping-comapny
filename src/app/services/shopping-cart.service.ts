@@ -26,8 +26,8 @@ export class ShoppingCartService {
   }
 
   private createCart(product: any, productQuantity: number) {
-    return this.shoppingCartCollection.add({ dateCreated: new Date(), products: [{ product, quantity: productQuantity }] });
-
+    return this.shoppingCartCollection
+      .add({ dateCreated: new Date(), products: [{ product, quantity: productQuantity }] });
   }
 
 
@@ -39,7 +39,7 @@ export class ShoppingCartService {
       this.cartId = result.id;
       this.changeStep(false);
       this.getCart();
-      this.toastService.show( message, {classname: 'bg-success text-light'} );
+      this.toastService.show(message, { classname: 'bg-success text-light' });
 
     }
     else {
@@ -48,7 +48,7 @@ export class ShoppingCartService {
   }
 
 
-  private async updateOrAddToCart(product: any, productQuantity: number, message : string) {
+  private async updateOrAddToCart(product: any, productQuantity: number, message: string) {
     let cart = this.cartProducts;
     this.changeStep(true);
 
@@ -70,7 +70,7 @@ export class ShoppingCartService {
       this.cartProducts = cart;
       this.getTotalQuantity(cart);
       this.changeStep(false);
-      this.toastService.show( message,  {classname: 'bg-success text-light'}  )
+      this.toastService.show(message, { classname: 'bg-success text-light' })
     });
     // this.cartProducts = cart;
 
@@ -82,9 +82,9 @@ export class ShoppingCartService {
 
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].product.id === product.id) {
-        
-          cart.splice(i, 1);
-       
+
+        cart.splice(i, 1);
+
       }
     }
 
@@ -128,7 +128,7 @@ export class ShoppingCartService {
     this.loading.next(value);
   }
 
-  clearCart(){
+  clearCart() {
     localStorage.clear();
   }
 

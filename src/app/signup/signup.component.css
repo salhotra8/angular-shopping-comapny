@@ -1,17 +1,23 @@
+* {
+    font-family:Arial, Helvetica, sans-serif !important; 
+    /* Add !important to overwrite all elements */
+  }
+
 .container{
     height: fit-content;
     border-radius: 20px;
     width: fit-content;
-    padding: 40px 30px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: auto;
-    background-color: rgba(219, 237, 253, 0.215);
-    
+    padding:  1px 45px 40px 45px;
+    box-shadow: rgba(9, 47, 47, 0.3) 0px 19px 38px, rgba(2, 36, 46, 0.215) 0px 15px 12px;
+    background-color: rgba(219, 237, 253, 0.215);    
 }
 
 .row{
     align-items: center;
     margin-top: 30px;
+}
+ngb-alert{
+    margin-bottom: -20px;
 }
 
 svg{
@@ -21,6 +27,10 @@ svg{
 .btn{
     padding: 8px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: large;
 }
 
 .divider:after,
@@ -31,3 +41,30 @@ height: 1px;
 background: #eee;
 }
 
+input{
+    padding: 10px 15px;
+    width: 18rem;
+    margin-top: 19px;
+    
+}
+
+.register{
+    font-weight: 600;
+}
+
+ngb-alert{
+    margin-bottom: -44px;
+    padding: 11px;
+}
+
+.loginLink:hover{
+    color: rgb(38, 40, 171);
+}
+
+@media (max-width: 400px) {
+.container{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+    
+}
